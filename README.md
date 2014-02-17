@@ -1,7 +1,7 @@
 Collatz
 =======
 
-Collatz solver using gevent. 
+Collatz solver using gevent.
 
 Requirements
 ============
@@ -31,13 +31,13 @@ Input
 =====
 
 Enter space seperated pair of numbers follwed by a new line character.
-Indicate end of input by entering two new line caharacters. Example : 
+Indicate end of input by entering two new line caharacters. Example :
 ```
--- Collatz Server Client -- 
+-- Collatz Server Client --
 
 Enter a pair of numbers followed by a new line character for each test case.
 Indicate end of input by entering two new line characters.
- 
+
 10 20
 30 40
 100 110
@@ -46,7 +46,7 @@ Indicate end of input by entering two new line characters.
 Output
 ======
 
-For each input pair, output will be a triple. Example : 
+For each input pair, output will be a triple. Example :
 ```
 10 20 21
 30 40 107
@@ -62,7 +62,7 @@ Collatz cycle length of a number is calculated using a recursive memoized algori
 ##### Collatz Server
 Collatz server is a http server that takes a json input as a ```GET``` parameter named ```data```
 
-Example server call : 
+Example server call :
 ```
 http://localhost:5000/?data=[[10,20],[20,30]]
 ```
@@ -75,7 +75,7 @@ Collatz client takes the input from the user, converts it to the JSON form. A re
 Concurrency using Gevent
 ========================
 
-Each test case is ```concurrently``` executed by the server. Within a test case, cycle length for each number in the input range in executed ```serially```.
+Each test case is ```concurrently``` executed by the server. Within a test case, cycle length for each number in the input range in calculated ```serially```.
 
 Concurrent cycle length calculation for each number in a range was tried along with concurrent execution of each test case but it harmed the throughput.
 
@@ -94,4 +94,3 @@ Replicate the above test :
 ```
 python -mtimeit -n 5 -r 5 -v -s'import collatz' 'collatz.p_range_collatz((1,100000))'
 ```
-
